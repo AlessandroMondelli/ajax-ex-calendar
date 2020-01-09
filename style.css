@@ -1,0 +1,20 @@
+* {
+    margin : 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#head {
+    height: 80px;
+    background-color: lightblue;
+}
+
+#head h1 {
+    text-align: center;
+    line-height: 80px;
+}
+
+.month {
+    text-align: center;
+    margin-top: 10px;
+}
