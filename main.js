@@ -12,12 +12,14 @@ $(document).ready(function() {
     var stopGen = moment('2018-01-01'); //Imposto mese iniziale limite
     var stopDec = moment('2018-12-01'); //Imposto mese finale limite
 
-    getMonth(); //Funzione che crea il primo mese
+    getMonth(); //Richiamo funzione che crea il primo mese
+    createDays(); //Richiamo funzione che crea giorni
     $(".arrow.left").prop('disabled',true); //Rendo non disponibile da subito la freccia sinistra
 
     $(".arrow.right").click(function() { //Al click su freccia destra
             momentData.add(1,'month'); //Aggiungo un mese
             $(".month-name,.month").empty(); //elimino mese precedente
+            moveDays(); //Funzione che mette giorni al posto giusto
             getMonth(); //Prendo e stampo nuovo mese
             $(".arrow.left").prop('disabled',false); //Rendo disponibile la freccia sinistra
 
@@ -29,12 +31,14 @@ $(document).ready(function() {
     $(".arrow.left").click(function() {
             momentData.subtract(1,'month'); //Sottraggo un mese
             $(".month-name,.month").empty(); //elimino mee precedente
+            moveDays(); //Funzione che mette giorni al posto giusto
             getMonth(); //Prendo e stampo nuovo mese
             $(".arrow.right").prop('disabled',false); //Rendo disponibile la freccia destra
 
             if (momentData.isSameOrBefore(stopGen)) { //Controllo se è disponibile un mese precedente
                 $(this).prop('disabled',true); //Se non è disponibile disabilito freccia
             }
+            moveDays();
     });
 
 
@@ -85,4 +89,30 @@ $(document).ready(function() {
         });
     }
 
+    function createDays() { //Funzione che crea giorni
+        var dataClone = moment(momentData); //Creo clone della data
+        for (var i = 1; i <= 7; i++) { //Ciclo per 7 volte
+            var temp = dataClone.weekday(i); //Prendo giorno della settimana in una variabile temporanea
+            var day = "<span>" + temp.format('dddd') + "</span>"; //Prendo giorno testuale
+            temp.add(1,'days'); //Aggiungo un giorno
+            $("#days").append(day); //Appendo giorno
+        }
+    }
+
+    function moveDays() {
+        var dataClone = moment(momentData); //Creo clone della data
+        var firstDayOfMonth = dataClone.weekday();
+        if (firstDayOfMonth != 1) {
+            if (firstDayOfMonth == 0) {
+                var diff = 6;
+            } else {
+                var diff = firstDayOfMonth - 1;
+            }
+            var quad = "<div class=\"day\"></div>"
+            for (var i = 0; i < diff; i++) {
+                $(".month").append(quad);
+            }
+        }
+        console.log(firstDayOfMonth);
+    }
 });
