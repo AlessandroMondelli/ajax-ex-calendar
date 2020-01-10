@@ -2,8 +2,10 @@
     margin : 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Lato', sans-serif;
 }
 
+/** HEAD **/
 #head {
     height: 80px;
     background-color: lightblue;
@@ -14,7 +16,49 @@
     line-height: 80px;
 }
 
+/** CALENDARIO **/
+.arrow {
+    float: left;
+    width: 15%;
+    height: calc(100vh - 80px);
+    font-size: 35px;
+    position: relative;
+    cursor: pointer;
+}
+
+.arrow:disabled {
+    color: red;
+}
+
+.arrow i {
+    position: absolute;
+    left: 50%;
+    top:50%;
+    transform: translate(-50%,-50%);
+}
+
+#mainCal {
+    float: left;
+    width: 70%;
+    margin: 0 auto;
+    margin-top: 30px;
+}
+
+.month-name {
+    font-size: 35px;
+}
+
 .month {
     text-align: center;
-    margin-top: 10px;
+    margin-top: 15px;
+    font-size: 25px;
+    text-align: left;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.month .day {
+    border: 1px solid black;
+    width: 175px;
+    height: 150px;
 }
