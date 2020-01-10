@@ -17,19 +17,19 @@
                 <h1>Calendario</h1>
             </div>
         </header>
-        <div class="arrow left">
+        <button class="arrow left">
             <i class="fas fa-chevron-left"></i>
-        </div>
+        </button>
         <main id="mainCal">
             <div class="month-name"></div>
             <div class="month"></div>
         </main>
-        <div class="arrow right">
+        <button class="arrow right">
             <i class="fas fa-chevron-right"></i>
-        </div>
+        </button>
 
         <script id="calendario-template" type="text/x-handlebars-template">
-            <div class="day">{{{varDay}}}</div>
+            <div class="day" data-day="{{ varDataDay }}">{{{ varDay }}}</div>
         </script>
     </body>
 </html>
